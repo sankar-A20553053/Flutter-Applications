@@ -5,7 +5,7 @@ import 'package:mp3/views/layoutdeck.dart';
 
 class QuizBoard extends StatelessWidget {
   final mainD? pack;
-  final Notifier? inform;
+  final Notifylist? inform;
 
   const QuizBoard({super.key, this.pack, this.inform});
 

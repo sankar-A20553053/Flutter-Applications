@@ -14,7 +14,7 @@ class Upperbox extends StatelessWidget {
     List<mainD> struc = [];
 
     if (dstore.isNotEmpty) {
-      print('from db');
+      //print('from db');
       int index = 0;
       while (index < dstore.length) {
         final fdb = await DataStore().query('study_flashcards',
@@ -35,7 +35,7 @@ class Upperbox extends StatelessWidget {
         index++;
       }
     } else {
-      print('from json');
+      //print('from json');
       final mem = await DefaultAssetBundle.of(context)
           .loadString('assets/flashcards.json');
 

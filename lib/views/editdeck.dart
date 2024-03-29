@@ -40,7 +40,6 @@ class EditDeck extends StatelessWidget {
         backgroundColor: Colors.deepPurple,
       ),
       body: SingleChildScrollView(
-        // Enable scrolling when keyboard is visible
         child: Center(
             child: Padding(
           padding: const EdgeInsets.all(24.0),
@@ -51,10 +50,9 @@ class EditDeck extends StatelessWidget {
                 initialValue: index != null ? question : card?.title,
                 decoration: InputDecoration(
                   hintText: 'Name',
-                  fillColor: Colors.white, // Added fill color
+                  fillColor: Colors.white,
                   filled: true,
                   border: OutlineInputBorder(
-                    // Defined border style
                     borderRadius: BorderRadius.circular(8.0),
                   ),
                 ),
@@ -70,10 +68,9 @@ class EditDeck extends StatelessWidget {
                   initialValue: answer,
                   decoration: InputDecoration(
                     hintText: 'Description',
-                    fillColor: Colors.white, // Added fill color
+                    fillColor: Colors.white,
                     filled: true,
                     border: OutlineInputBorder(
-                      // Defined border style
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                   ),
@@ -86,7 +83,6 @@ class EditDeck extends StatelessWidget {
                   TextButton(
                     child: const Text('Confirm'),
                     onPressed: () async {
-                      // Define a unique identifier for each condition.
                       const int showErrorDialog = 0;
                       const int addNewCard = 1;
                       const int updateCard = 2;
@@ -94,7 +90,6 @@ class EditDeck extends StatelessWidget {
                       const int updateDeck = 4;
                       int actionToPerform = showErrorDialog; // Default action
 
-                      // Determine the action to perform based on the conditions.
                       if ((card == null && index == null && question == '') ||
                           (card != null && card!.title == '') ||
                           (index != null && (question == '' || answer == ''))) {
@@ -111,7 +106,6 @@ class EditDeck extends StatelessWidget {
                         actionToPerform = updateDeck;
                       }
 
-                      // Perform the action based on the determined condition.
                       switch (actionToPerform) {
                         case showErrorDialog:
                           showDialog(
@@ -182,15 +176,16 @@ class EditDeck extends StatelessWidget {
                             // Delete a specific flashcard from the deck
                             var flashcardId = card!.flashcards[index!].id;
                             if (flashcardId != null) {
-                              await DataStore()
-                                  .removeRecord('study_flashcards', flashcardId);
+                              await DataStore().removeRecord(
+                                  'study_flashcards', flashcardId);
                               card!.flashcards.removeAt(index!);
                             }
                             break;
                           case deleteDeck:
                             await DataStore().removeAllRecordsFromDeck(
                                 'study_flashcards', card!.id!);
-                            await DataStore().removeRecord('study_decks', card!.id!);
+                            await DataStore()
+                                .removeRecord('study_decks', card!.id!);
                             existcard!.removeWhere((d) => d.id == card!.id);
                             break;
                         }

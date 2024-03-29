@@ -32,25 +32,24 @@ class DeckList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final box = Provider.of<List<mainD?>>(context);
-    final Notifier notifier = Notifier();
+    final Notifylist notifier = Notifylist();
 
     if (box.isEmpty) {
       return Scaffold(
         body: const Center(
           child: CircularProgressIndicator(color: Colors.teal),
         ),
-        backgroundColor: Colors.grey[200], // Light background color
+        backgroundColor: Colors.grey[200],
       );
     } else {
       return Scaffold(
         appBar: AppBar(
           title: const Text('Flashcard Decks',
               style: TextStyle(color: Colors.amberAccent)),
-          backgroundColor: Colors.deepOrange, // Updated AppBar color
+          backgroundColor: Colors.deepOrange,
           actions: <Widget>[
             IconButton(
-              icon: const Icon(Icons.download,
-                  color: Colors.amberAccent), // Refresh icon with a new color
+              icon: const Icon(Icons.download, color: Colors.amberAccent),
               onPressed: () async {
                 box.addAll(await _FromJson());
                 notifier.reloadDeck();
@@ -59,8 +58,7 @@ class DeckList extends StatelessWidget {
           ],
         ),
         floatingActionButton: FloatingActionButton(
-          backgroundColor:
-              Colors.blueAccent, // Updated FloatingActionButton color
+          backgroundColor: Colors.blueAccent,
           onPressed: () {
             Navigator.of(context).push(
               MaterialPageRoute(
@@ -86,8 +84,8 @@ class DeckList extends StatelessWidget {
                 final deck = box[index];
                 return Card(
                   color:
-                      Colors.lightBlue[50], // Lighter card color for contrast
-                  elevation: 4, // Added shadow for depth
+                      Colors.lightBlue[50],
+                  elevation: 4,
                   child: InkWell(
                     onTap: () {
                       Navigator.of(context).push(
@@ -114,7 +112,7 @@ class DeckList extends StatelessWidget {
                           IconButton(
                             icon: const Icon(Icons.edit,
                                 color: Colors
-                                    .deepOrange), // Updated icon color for visibility
+                                    .deepOrange),
                             onPressed: () {
                               Navigator.of(context).push(
                                 MaterialPageRoute(builder: (context) {

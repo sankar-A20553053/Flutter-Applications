@@ -9,7 +9,7 @@ class Flashcards extends StatelessWidget {
   final mainD? deck;
   final VoidCallback? sort;
   final VoidCallback? click;
-  final Notifier notifier;
+  final Notifylist notifier;
 
   const Flashcards({
     super.key,
@@ -72,7 +72,7 @@ class Flashcards extends StatelessWidget {
                       .sort((a, b) => a.question.compareTo(b.question));
                   break;
               }
-              print('sort clicked');
+              //print('sort clicked');
               sort!();
             },
           ),
@@ -110,8 +110,8 @@ class Flashcards extends StatelessWidget {
                 ((MediaQuery.of(context).size.width ~/ 180) + 1).toInt(),
             padding: const EdgeInsets.all(
                 12), // Slightly increased padding for more space
-            mainAxisSpacing: 10, // Added space between rows
-            crossAxisSpacing: 10, // Added space between columns
+            mainAxisSpacing: 10,
+            crossAxisSpacing: 10,
             childAspectRatio:
                 0.8, // Adjusted for cards to be taller, considering content size
             children: List.generate(deck!.flashcards.length, (index) {
@@ -131,7 +131,7 @@ class Flashcards extends StatelessWidget {
                   ],
                 ),
                 child: InkWell(
-                  // Using InkWell for visual feedback on tap
+
                   onTap: () {
                     click?.call();
                     Navigator.of(context).push(MaterialPageRoute(
@@ -153,7 +153,7 @@ class Flashcards extends StatelessWidget {
                   child: CustomCard(
                     color: false,
                     flashcards: deck!.flashcards[index],
-                    // onPressed method is now handled by InkWell
+
                   ),
                 ),
               );
